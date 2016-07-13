@@ -1,7 +1,7 @@
-FEF ( Front-end Framework fork from [dva](https://github.com/sorrycc/dva) )
+FEF ( Front-End Framework )
 ======
 
-> Front-end framework based on react, redux, react-redux, react-router and redux-saga, inspired by elm and choo.
+> Front-end framework based on react, redux, react-redux, react-router and redux-saga, inspired by elm and choo. Fork from [dva](https://github.com/sorrycc/dva).
 
 [![NPM version](https://img.shields.io/npm/v/fef.svg)](https://www.npmjs.com/package/fef)
 [![NPM downloads](https://img.shields.io/npm/dm/fef.svg)](https://www.npmjs.com/package/fef)
