@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import { Provider, connect } from 'react-redux';
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import createSagaMiddleware, { takeEvery, takeLatest } from 'redux-saga';
-import router, { hashHistory } from 'react-router';
-import effects, { fork, select, put } from 'redux-saga/effects';
+import { hashHistory } from 'react-router';
+import { fork, select, put } from 'redux-saga/effects';
 import document from 'global/document';
 import window from 'global/window';
 import { is, check, warn } from './utils';
@@ -177,4 +177,6 @@ export default function fef() {
   }
 }
 
-export { connect, router, effects };
+export { connect };
+export * as effects from 'redux-saga/effects';
+export * as router from 'react-router';
