@@ -1,0 +1,15 @@
+{
+  "presets": ["react", "stage-1"],
+  "env": {
+    "umd": {
+      "presets": ["es2015-rollup"]
+    },
+    "cjs": {
+      "presets": ["es2015-loose"],
+      "plugins": ["add-module-exports", "transform-runtime"]
+    },
+    "es": {
+      "presets": ["es2015-loose-native-modules"]
+    }
+  }
+}
