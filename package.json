@@ -10,7 +10,7 @@
     "build:es": "cross-env BABEL_ENV=es babel src --out-dir es",
     "build": "npm run build:lib && npm run build:es",
     "pretest": "npm run build",
-    "test": "cross-env BABEL_ENV=cjs nyc mocha",
+    "test": "cross-env BABEL_ENV=test nyc mocha",
     "prepublish": "npm test",
     "report": "nyc report --reporter=html",
     "coveralls": "nyc report --reporter=text-lcov | coveralls"
