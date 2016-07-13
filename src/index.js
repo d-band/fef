@@ -5,11 +5,14 @@ import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import createSagaMiddleware, { takeEvery, takeLatest } from 'redux-saga';
 import { hashHistory } from 'react-router';
 import { fork, select, put } from 'redux-saga/effects';
-import document from 'global/document';
 import window from 'global/window';
 import { is, check, warn } from './utils';
 
-export default function fef() {
+export default function fef(opts = {}) {
+  const onError = opts.onError || function (err) {
+    throw err;
+  };
+
   let _routes = null;
   const _models = [];
   const app = {
@@ -54,7 +57,7 @@ export default function fef() {
       const ns = model.namespace;
       reducers[ns] = (state = model.state, action) => {
         const [ _ns, _name ] = action.type.split(':');
-        const _reducer = _name ? model.reducers[_name] : null;
+        const _reducer = _name && model.reducers ? model.reducers[_name] : null;
         if (_ns === ns && _reducer) {
           return _reducer(action.payload, state);
         }
@@ -100,18 +103,16 @@ export default function fef() {
     sagaMiddleware.run(rootSaga);
 
     // Handle subscriptions.
-    document.addEventListener('DOMContentLoaded', () => {
-      _models.forEach(({ subscriptions }) => {
-        if (subscriptions) {
-          check(subscriptions, is.array, 'Subscriptions must be an array');
-          subscriptions.forEach(sub => {
-            check(sub, is.func, 'Subscription must be an function');
-            sub((type, payload) => {
-              store.dispatch({ type, payload });
-            });
-          });
-        }
-      });
+    _models.forEach(({ subscriptions }) => {
+      if (subscriptions) {
+        check(subscriptions, is.array, 'Subscriptions must be an array');
+        subscriptions.forEach(sub => {
+          check(sub, is.func, 'Subscription must be an function');
+          sub((type, payload) => {
+            store.dispatch({ type, payload });
+          }, onError);
+        });
+      }
     });
 
     // Render and hmr.
@@ -145,8 +146,10 @@ export default function fef() {
       }
 
       function* sagaWrap(action) {
-        const _state = yield select(state => state[ns]);
-        yield _saga(action.payload, _state, send);
+        try {
+          const _state = yield select(state => state[ns]);
+          yield _saga(action.payload, _state, send);
+        } catch (e) { onError(e); }
       }
 
       if (_type === 'takeEvery') {
