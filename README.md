@@ -26,6 +26,7 @@ import React from 'react';
 import fef, { connect, router } from 'fef';
 
 const { Router, Route } = router;
+const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 // 1. Initialize
 const app = fef();
@@ -43,7 +44,7 @@ app.model({
       yield delay(1000);
       yield send('count:addDone');
     },
-    *add(data, state, send) {
+    *minus(data, state, send) {
       yield delay(1000);
       yield send('count:minusDone');
     }
