@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider, connect } from 'react-redux';
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import createSagaMiddleware, { takeEvery, takeLatest } from 'redux-saga';
-import { hashHistory } from 'react-router';
+import { browserHistory } from 'react-router';
 import { fork, select, put } from 'redux-saga/effects';
 import window from 'global/window';
 import { is, check, warn } from './utils';
@@ -97,7 +97,7 @@ export default function fef(opts = {}) {
     );
 
     // Sync history.
-    let history = opts.history || hashHistory;
+    let history = opts.history || browserHistory;
 
     // Start saga.
     sagaMiddleware.run(rootSaga);
