@@ -6,7 +6,7 @@ import createSagaMiddleware, { takeEvery, takeLatest } from 'redux-saga';
 import { browserHistory } from 'react-router';
 import { fork, select, put } from 'redux-saga/effects';
 import window from 'global/window';
-import { is, check, warn } from './utils';
+import { is, check, log } from './utils';
 
 export default function fef(opts = {}) {
   const onError = opts.onError || function (err) {
@@ -135,13 +135,13 @@ export default function fef(opts = {}) {
     }
 
     function getWatcher(ns, k, saga) {
+      let nsk = `${ns}:${k}`;
       let _saga = saga;
       let _type = 'takeEvery';
       if (Array.isArray(saga)) {
         [ _saga, opts ] = saga;
         opts = opts || {};
         check(opts.type, is.sagaType, 'Type must be takeEvery or takeLatest');
-        warn(opts.type, v => v === 'takeLatest', 'takeEvery is the default type, no need to set it by opts');
         _type = opts.type;
       }
 
@@ -149,16 +149,19 @@ export default function fef(opts = {}) {
         try {
           const _state = yield select(state => state[ns]);
           yield _saga(action.payload, _state, send);
-        } catch (e) { onError(e); }
+        } catch (e) {
+          log('error', nsk, e);
+          onError(e);
+        }
       }
 
       if (_type === 'takeEvery') {
         return function*() {
-          yield takeEvery(ns + ':' + k, sagaWrap);
+          yield takeEvery(nsk, sagaWrap);
         };
       } else {
         return function*() {
-          yield takeLatest(ns + ':' + k, sagaWrap);
+          yield takeLatest(nsk, sagaWrap);
         };
       }
     }
