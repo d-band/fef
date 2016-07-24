@@ -10,7 +10,7 @@
     "build:es": "cross-env BABEL_ENV=es babel src --out-dir es",
     "build": "npm run build:lib && npm run build:es",
     "pretest": "npm run build",
-    "test": "cross-env BABEL_ENV=test nyc mocha",
+    "test": "cross-env BABEL_ENV=test nyc mocha --compilers js:babel-register --no-timeouts",
     "prepublish": "npm test",
     "report": "nyc report --reporter=html",
     "coveralls": "nyc report --reporter=text-lcov | coveralls"
@@ -57,7 +57,7 @@
     "babel-preset-es2015-loose-native-modules": "^1.0.0",
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-1": "^6.5.0",
-    "babel-register": "^6.11.5",
+    "babel-register": "~6.9.0",
     "babel-runtime": "^6.9.2",
     "coveralls": "^2.11.11",
     "cross-env": "^2.0.0",
