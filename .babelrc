@@ -9,9 +9,8 @@
       "presets": ["es2015-loose-native-modules"]
     },
     "test": {
-      "sourceMaps": "inline",
       "presets": ["es2015-loose"],
-      "plugins": ["add-module-exports", "transform-runtime"]
+      "plugins": ["add-module-exports", "transform-runtime", "istanbul"]
     }
   }
 }
