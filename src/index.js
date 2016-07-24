@@ -42,7 +42,7 @@ export default function fef(opts = {}) {
   function start(container, opts = {}) {
     // If no container supplied, return jsx element.
     if (arguments.length === 0
-      || (arguments.length === 1 && is.object(container))) {
+      || (arguments.length === 1 && !is.element(container))) {
       opts = container || {};
       container = null;
     } else {

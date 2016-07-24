@@ -1,6 +1,6 @@
 {
   "name": "fef",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Front-End Framework using react redux saga",
   "main": "lib/index.js",
   "jsnext:main": "es/index.js",
