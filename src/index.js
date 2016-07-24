@@ -39,15 +39,14 @@ export default function fef(opts = {}) {
   // app.start(container);
   // app.start(container, opts);
   // app.start(opts);
-  function start(container, opts = {}) {
+  function start(container, opts) {
     // If no container supplied, return jsx element.
-    if (arguments.length === 0
-      || (arguments.length === 1 && !is.element(container))) {
-      opts = container || {};
+    if (!opts && !is.element(container)) {
+      opts = container;
       container = null;
-    } else {
-      check(container, is.element, 'Container must be DOMElement.');
     }
+    opts = opts || {};
+    
     check(_routes, is.notUndef, 'Routes is not defined.');
 
     // Get sagas and reducers from model.
