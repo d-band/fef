@@ -47,6 +47,7 @@
   ],
   "homepage": "https://github.com/d-band/fef#readme",
   "dependencies": {
+    "babel-runtime": "^6.11.6",
     "global": "^4.3.0",
     "react-redux": "4.4.x",
     "react-router": "^2.6.0",
@@ -69,7 +70,6 @@
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-1": "^6.5.0",
     "babel-register": "^6.11.5",
-    "babel-runtime": "^6.9.2",
     "coveralls": "^2.11.11",
     "cross-env": "^2.0.0",
     "eslint": "^3.1.1",

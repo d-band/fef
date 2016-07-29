@@ -1,16 +1,17 @@
 {
   "presets": ["react", "stage-1"],
+  "plugins": ["transform-runtime"],
   "env": {
     "cjs": {
       "presets": ["es2015-loose"],
-      "plugins": ["add-module-exports", "transform-runtime"]
+      "plugins": ["add-module-exports"]
     },
     "es": {
       "presets": ["es2015-loose-native-modules"]
     },
     "test": {
       "presets": ["es2015-loose"],
-      "plugins": ["add-module-exports", "transform-runtime", "istanbul"]
+      "plugins": ["add-module-exports", "istanbul"]
     }
   }
 }
