@@ -50,7 +50,7 @@
     "babel-runtime": "^6.11.6",
     "global": "^4.3.0",
     "react-redux": "4.4.x",
-    "react-router": "^2.6.0",
+    "react-router": "^2.6.1",
     "redux": "^3.5.2",
     "redux-saga": "^0.11.0"
   },
