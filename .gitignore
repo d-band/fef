@@ -26,3 +26,4 @@ coverage
 es/
 lib/
 node_modules
+dist
