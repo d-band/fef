@@ -10,7 +10,7 @@
     "build:es": "cross-env BABEL_ENV=es babel src --out-dir es",
     "build": "npm run build:lib && npm run build:es",
     "pretest": "npm run build",
-    "test": "cross-env BABEL_ENV=test nyc mocha --no-timeouts",
+    "test": "cross-env BABEL_ENV=test nyc mocha --require ./test/setup.js --no-timeouts",
     "prepublish": "npm test",
     "report": "nyc report --reporter=html",
     "coveralls": "nyc report --reporter=text-lcov | coveralls"
@@ -76,6 +76,7 @@
     "eslint-config-rackt": "^1.1.1",
     "eslint-plugin-react": "^6.0.0",
     "expect": "^1.20.2",
+    "jsdom": "^9.4.2",
     "mocha": "^3.0.0",
     "nyc": "^7.0.0",
     "react": "^15.2.1",

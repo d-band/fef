@@ -1,4 +1,5 @@
 import expect from 'expect';
+import React from 'react';
 import Fef, { effects } from '../src/index';
 
 const { call } = effects;
@@ -25,7 +26,7 @@ describe('app.model', () => {
       }
     });
     app.router(({ history }) => <div />);
-    app.start();
+    app.start(document.getElementById('root'));
 
     app.store.dispatch({ type: 'count:add' });
     app.store.dispatch({ type: 'count:add' });
@@ -48,7 +49,7 @@ describe('app.model', () => {
       }
     });
     app.router(({ history }) => <div />);
-    app.start();
+    app.start(document.getElementById('root'));
 
     // Only catch the last one.
     app.store.dispatch({ type: 'count:add' });
@@ -79,7 +80,7 @@ describe('app.model', () => {
       }
     });
     app.router(({ history }) => <div />);
-    app.start();
+    app.start(document.getElementById('root'));
     app.store.dispatch({ type: 'count:add' });
 
     expect(errors).toEqual([ 'effect error' ]);
@@ -112,7 +113,7 @@ describe('app.model', () => {
       ]
     });
     app.router(({ history }) => <div />);
-    app.start();
+    app.start(document.getElementById('root'));
 
     setTimeout(() => {
       expect(errors).toEqual([ 'effect error', 'subscription error' ]);

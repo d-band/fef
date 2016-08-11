@@ -1,4 +1,5 @@
 import expect from 'expect';
+import React from 'react';
 import Fef from '../src/index';
 
 describe('app.start', () => {
@@ -6,7 +7,7 @@ describe('app.start', () => {
   it('throw error if no routes defined', () => {
     const app = Fef();
     expect(() => {
-      app.start();
+      app.start(document.getElementById('root'));
     }).toThrow(/Routes is not defined/);
   });
 
@@ -37,7 +38,7 @@ describe('app.start', () => {
     };
     const app = Fef();
     app.router(({ history }) => <div />);
-    app.start({
+    app.start(document.getElementById('root'), {
       reducers
     });
 
@@ -50,7 +51,7 @@ describe('app.start', () => {
     const app = Fef();
     app.router(({ history }) => <div />);
     expect(() => {
-      app.start({
+      app.start(document.getElementById('root'), {
         reducers: 0
       });
     }).toThrow(/Reducers must be object/);
@@ -64,7 +65,7 @@ describe('app.start', () => {
     });
     app.router(({ history }) => <div />);
     expect(() => {
-      app.start({
+      app.start(document.getElementById('root'), {
         reducers: { count: function () {} }
       });
     }).toThrow(/Reducers should not be conflict with namespace in model/);
@@ -78,7 +79,7 @@ describe('app.start', () => {
 
     const app = Fef();
     app.router(({ history }) => <div />);
-    app.start({
+    app.start(document.getElementById('root'), {
       middlewares: [ countMiddleware ]
     });
 
@@ -90,7 +91,7 @@ describe('app.start', () => {
     const app = Fef();
     app.router(({ history }) => <div />);
     expect(() => {
-      app.start({
+      app.start(document.getElementById('root'), {
         middlewares: 0
       });
     }).toThrow(/Middlewares must be array/);

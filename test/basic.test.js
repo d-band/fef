@@ -1,4 +1,5 @@
 import expect from 'expect';
+import React from 'react';
 import Fef from '../src/index';
 
 describe('basic', () => {
@@ -22,7 +23,7 @@ describe('basic', () => {
       }
     });
     app.router(({ history }) => <div />);
-    app.start();
+    app.start(document.getElementById('root'));
 
     app.store.dispatch({ type: 'count:add' });
     expect(app.store.getState().count).toEqual(1);
