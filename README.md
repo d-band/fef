@@ -1,6 +1,8 @@
 FEF ( Front-End Framework )
 ======
 
+**DEPRECATED: This library is deprecated, please use [dva](https://github.com/dvajs/dva) or [yax](https://github.com/d-band/yax)**
+
 > Front-end framework based on react, redux, react-redux, react-router and redux-saga, inspired by elm and choo. Fork from [dva](https://github.com/dvajs/dva).
 
 [![NPM version](https://img.shields.io/npm/v/fef.svg)](https://www.npmjs.com/package/fef)
